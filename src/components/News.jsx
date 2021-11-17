@@ -11,11 +11,9 @@ const demoImage = 'http://coinrevolution.com/wp-content/uploads/2020/06/cryptone
 
 function News({ simplified }) {
   //debugger
-
-  const { data: cryptoNews } = useGetCryptoNewsQuery({
-    newsCategory: "Cryptocurrency",
-    count: simplified ? 6 : 12
-  })
+  
+ 
+  const { data: cryptoNews } = useGetCryptoNewsQuery({ newsCategory: "Cryptocurrency", count: simplified ? 6 : 12 });
  
   console.log('cryptoNews: ', cryptoNews);
 
@@ -26,7 +24,7 @@ function News({ simplified }) {
       {cryptoNews.value.map((news, i) => (
         <Col key={i} xs={24} sm={12} md={12} lg={8} xl={6}>
           <Card hoverable className='news-card'>
-            <a href={news.url} target="_blank" rel="noreferrer"></a>
+            <a href={news.url} target="_blank" rel="noreferrer">
             <div className='news-image-container'>
                 <Title className='news-title' level={4}>
                   {news.name}
@@ -40,16 +38,16 @@ function News({ simplified }) {
               }
             </p>
             <div className='provider-container'>
+              <div>
               <Avatar src={news.provider[0]?.image?.thumbnail?.contentUrl || demoImage} alt="" />
               <Text className='provider-name'>{news.provider[0]?.name}</Text>
+              </div>
+              <Text>{moment(news.datePublished).startOf('ss').fromNow()}</Text>
             </div>
-            <Text>{moment(news.datePublished).startOf('ss').fromNow()}</Text>
+            </a>
           </Card>
-
         </Col>
-
       ))}
-
     </Row>
   )
 }

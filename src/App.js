@@ -2,8 +2,7 @@ import React from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 import { Layout, Typography, Space } from 'antd';
 
-import { Navbar, HomePage, Exchanges, Cryptocurrencies, CryptoDetails, News } from './components';
-
+import { Exchanges, HomePage, News, Cryptocurrencies, CryptoDetails, Navbar } from './components';
 import './App.css';
 
 //https://youtu.be/9DDX3US3kss
