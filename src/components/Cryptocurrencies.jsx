@@ -13,7 +13,9 @@ function Cryptocurrencies( { simplified }) {
   const [searchTerm, setSearchTerm] = useState('');
 
   console.log('cryptos: ', cryptos);
-  console.log(count);
+  console.log('count: ', count);
+  console.log('simplified: ', simplified);
+  console.log('isFetching: ', isFetching);
 
   useEffect(() => {
     const filterData = cryptosList?.data?.coins.filter((coin) => coin.name.toLowerCase().includes(searchTerm.toLocaleLowerCase()));
@@ -23,19 +25,23 @@ function Cryptocurrencies( { simplified }) {
   }, [cryptosList, searchTerm]);
 
   if(isFetching) return "Loading...";
+  console.log("isFetching2: ", isFetching);
 
   return (
     <>
-    <div className='search-crypto'>
-      <Input placeholder='Search Cryptocurrency' onChange={(event) => setSearchTerm(event.target.value) } />
-    </div>
+    {!simplified && (
+       <div className='search-crypto'>
+       <Input placeholder='Search Cryptocurrency' onChange={(event) => setSearchTerm(event.target.value) } />
+     </div>
+    )}
+   
         <Row gutter={[32, 32]} className='crypto-card-container'>
       {cryptos?.map((currency) => (
         <Col xs={24} sm={12} lg={6} className='crypto-card' key={currency.id}>
           <Link to={`/crypto/${currency.id}`}>
             <Card 
               title={`${currency.rank}. ${currency.name}`}
-              extra={<img className="crypto-image" alt="Crypto Logo" src={currency.iconUrl}/>}
+              extra={<img className="crypto-image" alt="crypto-Logo" src={currency.iconUrl}/>}
               hoverable
               >
                 <p>Price: {millify(currency.price)}</p>
