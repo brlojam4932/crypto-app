@@ -29,7 +29,7 @@ function News({ simplified }) {
                 <Title className='news-title' level={4}>
                   {news.name}
                 </Title>
-                <img style={{maxWidth: "200px", maxHeight: '100px'}} src= {news?.imgage?.thumbnail?.contentUrl || demoImage} alt=''/>
+                <img style={{maxWidth: "200px", maxHeight: '100px'}} src= {news?.image?.thumbnail?.contentUrl || demoImage} alt=''/>
             </div>
             <p>
               {news.description > 100 

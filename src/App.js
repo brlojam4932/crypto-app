@@ -1,44 +1,55 @@
 import React from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 import { Layout, Typography, Space } from 'antd';
 
-import { Exchanges, HomePage, News, Cryptocurrencies, CryptoDetails, Navbar } from './components';
+import { Exchanges, Homepage, News, Cryptocurrencies, CryptoDetails, Navbar } from './components';
 import './App.css';
 
-//https://youtu.be/9DDX3US3kss
+// https://youtu.be/9DDX3US3kss
 
 function App() {
   return (
     <div className="app">
-      <div className="navbar">
-        <Navbar />
-      </div>
-      <div className="main">
-        <Layout>
-          <div className="routes">
-            <Routes>
-              <Route path="/" element={<HomePage />}>
-                <Route path="/exchanges" element={<Exchanges />} />
-                <Route path="/cryptocurrencies" element={<Cryptocurrencies />} />
-                <Route path="/crypto/:coinId" element={<CryptoDetails />} />
-                <Route path="/news" element={<News />} />
-              </Route>
-            </Routes>
-          </div>
-        </Layout>
-        <div className="footer">
-          <Typography.Title level={5} style={{ color: 'white', textAlign: 'center' }}>
-            Cryptoverse <br />
-            All rights reserved
-          </Typography.Title>
-          <Space>
-            <Link to='/'>Home</Link>
-            <Link to='/exchanges'>Exchanges</Link>
-            <Link to='/news'>News</Link>
-          </Space>
+    <div className="navbar">
+      <Navbar />
+    </div>
+    <div className="main">
+      <Layout>
+        <div className="routes">
+          <Switch>
+            <Route exact path="/">
+              <Homepage />
+            </Route>
+            <Route exact path="/exchanges">
+              <Exchanges />
+            </Route>
+            <Route exact path="/cryptocurrencies">
+              <Cryptocurrencies />
+            </Route>
+            <Route exact path="/crypto/:coinId">
+              <CryptoDetails />
+            </Route>
+            <Route exact path="/news">
+              <News />
+            </Route>
+          </Switch>
         </div>
+      </Layout>
+      <div className="footer">
+        <Typography.Title level={5} style={{ color: 'white', textAlign: 'center' }}>Copyright © 2021
+          <Link to="/">
+            Cryptoverse Inc.
+          </Link> <br />
+          All Rights Reserved.
+        </Typography.Title>
+        <Space>
+          <Link to="/">Home</Link>
+          <Link to="/exchanges">Exchanges</Link>
+          <Link to="/news">News</Link>
+        </Space>
       </div>
     </div>
+  </div>
   );
 }
 
