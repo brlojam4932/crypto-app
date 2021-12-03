@@ -29,12 +29,12 @@ function LineChart({ coinHistory, currentPrice, coinName }) {
 
   for (let i = 0; i < coinHistory?.data?.history?.length; i++) {
     // inside of the loop
-    coinPrice.push(coinHistory.data.history[i].price);
+    coinPrice.push(coinHistory?.data?.history[i].price);
   }
 
   for (let i = 0; i < coinHistory?.data?.history?.length; i++) {
     // inside of the loop
-    coinTimeStamp.push(new Date(coinHistory.data.history[i].timestamp).toLocaleDateString());
+    coinTimeStamp.push(new Date(coinHistory?.data?.history[i].timestamp).toLocaleDateString());
   }
 
 
@@ -54,12 +54,13 @@ function LineChart({ coinHistory, currentPrice, coinName }) {
 
   const options = {
     scales: {
-      y: {
-        ticks: {
-          beginAtZero: true,
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: true,
+          },
         },
-      },
-
+      ],
     },
   };
 

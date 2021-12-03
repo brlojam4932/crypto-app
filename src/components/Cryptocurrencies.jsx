@@ -11,10 +11,10 @@ function Cryptocurrencies({ simplified }) {
   const [cryptos, setCryptos] = useState();
   const [searchTerm, setSearchTerm] = useState('');
 
-  console.log('cryptos: ', cryptos);
-  console.log('count: ', count);
-  console.log('simplified: ', simplified);
-  console.log('isFetching: ', isFetching);
+  //console.log('cryptos: ', cryptos);
+  //console.log('count: ', count);
+  //console.log('simplified: ', simplified);
+  //console.log('isFetching: ', isFetching);
 
   useEffect(() => {
     setCryptos(cryptosList?.data?.coins);

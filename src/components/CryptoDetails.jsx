@@ -16,8 +16,11 @@ function CryptoDetails() {
   const { coinId } = useParams();
   const [timeperiod, setTimeperiod] = useState('7d');
   const { data, isFetching } = useGetCryptoDetailsQuery(coinId);
-  const { data: coinHistory } = useGetCryptoHistoryQuery(coinId, timeperiod);
-  //console.log(data);
+  const { data: coinHistory } = useGetCryptoHistoryQuery({ coinId, timeperiod });
+  console.log("coinId: ", coinId);
+  console.log("cryptoDetails", data);
+  console.log("coinHistory", coinHistory);
+
   const cryptoDetails = data?.data?.coin;
 
   if (isFetching) return "Loading...";
@@ -48,16 +51,16 @@ function CryptoDetails() {
     <Col className='coin-detail-container'>
       <Col className='coin-heading-container'>
         <Title level={2} className='coin-name'>
-          {cryptoDetails.name} ({cryptoDetails.slug}) Price
+          {data?.data?.coin.name} ({data?.data?.coin.slug}) Price
         </Title>
-        <p>An overview showing the statistics of {cryptoDetails.name}, such as the base and quote currency, the rank, and trading volume.</p>
+        <p>{cryptoDetails.name} live price in US Dollar (USD). View value statistics, market cap and supply.</p>
       </Col>
 
       {/* drop-down select time period to chart... */}
       <Select
         defaultValue="7d"
         className='select-timeperiod'
-        placeholder="Select Time Period"
+        placeholder="Select Timeperiod"
         onChange={(value) => setTimeperiod(value)}
       >
         {time.map((date) => <Option key={date}>{date}</Option>)}
