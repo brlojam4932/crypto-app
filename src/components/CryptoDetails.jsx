@@ -4,17 +4,19 @@ import { useParams } from 'react-router-dom';
 import millify from 'millify';
 import { Col, Row, Typography, Select } from 'antd';
 import { MoneyCollectOutlined, DollarCircleOutlined, FundOutlined, ExclamationCircleOutlined, StopOutlined, TrophyOutlined, CheckOutlined, NumberOutlined, ThunderboltOutlined } from '@ant-design/icons';
+import LineChart from './LineChart';
 
-import { useGetCryptoDetailsQuery, useGetCryptoQuery } from "../services/cryptoApi";
 
+import { useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } from "../services/cryptoApi";
 
 const { Title, Text } = Typography;
 const { Option } = Select;
 
 function CryptoDetails() {
   const { coinId } = useParams();
-  const [timePeriod, setTimeperiod] = useState('7d');
+  const [timeperiod, setTimeperiod] = useState('7d');
   const { data, isFetching } = useGetCryptoDetailsQuery(coinId);
+  const { data: coinHistory } = useGetCryptoHistoryQuery(coinId, timeperiod);
   //console.log(data);
   const cryptoDetails = data?.data?.coin;
 
@@ -42,6 +44,7 @@ function CryptoDetails() {
   // slug: alt names for that crypto coin
 
   return (
+    <>
     <Col className='coin-detail-container'>
       <Col className='coin-heading-container'>
         <Title level={2} className='coin-name'>
@@ -49,6 +52,8 @@ function CryptoDetails() {
         </Title>
         <p>An overview showing the statistics of {cryptoDetails.name}, such as the base and quote currency, the rank, and trading volume.</p>
       </Col>
+
+      {/* drop-down select time period to chart... */}
       <Select
         defaultValue="7d"
         className='select-timeperiod'
@@ -57,7 +62,15 @@ function CryptoDetails() {
       >
         {time.map((date) => <Option key={date}>{date}</Option>)}
       </Select>
+
       {/* line chart... */}
+      <LineChart
+        coinHistory={coinHistory}
+        currentPrice={millify(cryptoDetails.price)}
+        coinName={cryptoDetails.name}
+      />
+
+      {/* coin details... */}
       <Col className='stats-container'>
         <Col className='coin-value-statistics'>
           <Col className='coin-value-statistics-heading'>
@@ -125,6 +138,8 @@ function CryptoDetails() {
       </Col>
 
     </Col>
+    </>
+    
   )
 }
 
