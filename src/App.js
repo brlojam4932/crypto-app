@@ -7,6 +7,11 @@ import './App.css';
 
 // https://youtu.be/9DDX3US3kss
 
+// replace white space: 
+// const name = 'Hi my name is Flavio'
+// name.replace(/\s/g, '') //HimynameisFlavio
+// add space between words in html: &nbsp;&nbsp;
+
 function App() {
   return (
     <div className="app">
