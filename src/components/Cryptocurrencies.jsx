@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import millify from 'millify';
 import { Link } from 'react-router-dom';
-import { Card, Row, Col, Input } from 'antd';
+import { Card, Row, Col, Input, Typography, Avatar, Collapse } from 'antd';
 
 import { useGetCryptosQuery } from '../services/cryptoApi';
+
+const { Text } = Typography;
+const { Panel } = Collapse;
 
 function Cryptocurrencies({ simplified }) {
   const count = simplified ? 10 : 100;
@@ -34,23 +37,41 @@ function Cryptocurrencies({ simplified }) {
         <Input placeholder='Search Cryptocurrency' onChange={(event) => setSearchTerm(event.target.value)} />
       </div>
 
-      <Row gutter={[32, 32]} className='crypto-card-container'>
+      <Row>
+        <Col span={4}></Col>
+        <Col span={4}>Name</Col>
+        <Col span={4}>Price</Col>
+        <Col span={4}>Market Cap</Col>
+        <Col span={4}>Daily Change</Col>
+      </Row>
+
+
+      <Row>
         {cryptos?.map((currency) => (
-          <Col xs={24} sm={12} lg={6} className='crypto-card' key={currency.id}>
-            <Link key={currency.id} to={`/crypto/${currency.id}`}>
-              <Card
-                title={`${currency.rank}. ${currency.name}`}
-                extra={<img className="crypto-image" alt="crypto-Logo" src={currency.iconUrl} />}
-                hoverable
+          <Col span={24}>
+            <Collapse>
+              <Panel
+                key={currency.id}
+                showArrow={false}
+                header={(
+                  <Link key={currency.id} to={`/crypto/${currency.id}`}>
+                    <Row key={currency.id}>
+                      <Col span={4}>
+                        <Avatar img className="crypto-image" alt="crypto-Logo" src={currency.iconUrl} />
+
+                      </Col>
+                      <Col span={4}>{currency.name}</Col>
+                      <Col span={4}>{currency.price}</Col>
+                      <Col span={4}>{currency.marketCap}</Col>
+                      <Col span={4}>{currency.change}</Col>
+                    </Row>
+                  </Link>
+                )}
               >
-                <p>Price: {millify(currency.price)}</p>
-                <p>Market Cap: {millify(currency.marketCap)}</p>
-                <p>Daily Change: {millify(currency.change)}%</p>
-              </Card>
-            </Link>
+              </Panel>
+            </Collapse>
           </Col>
         ))}
-
       </Row>
     </>
 
