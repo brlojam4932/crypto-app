@@ -30,32 +30,38 @@ function Navbar() {
   }, [screenSize]);
 
   return (
-    <div className="nav-container">
-      <div className="logo-container">
-        <Avatar src={icon} size="large" />
-        <Typography.Title level={2} className="logo"><Link to="/">Falcon Trades</Link></Typography.Title>
-        <Button className='menu-control-container' onClick={() => setActiveMenu(!activeMenu)}>
-          <MenuOutlined />
-        </Button>
-      </div>
-      {activeMenu && (
-        <Menu theme="dark">
-          <Menu.Item icon={<HomeOutlined />}>
-            <Link to='/'>Home</Link>
-          </Menu.Item>
-          <Menu.Item icon={<FundOutlined />}>
-            <Link to='/cryptocurrencies'>Cryptocurrencies</Link>
-          </Menu.Item>
-          <Menu.Item icon={<MoneyCollectOutlined />}>
-            <Link to='/exchanges'>Exchanges</Link>
-          </Menu.Item>
-          <Menu.Item icon={<BulbOutlined />}>
-            <Link to='/news'>News</Link>
-          </Menu.Item>
-        </Menu>
-      )}
+    <>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <Link to="/" class="navbar-brand">Navbar</Link>
+          <button class="navbar-toggler" type="button" onClick={() => setActiveMenu(!activeMenu)} data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-    </div>
+          <div class="collapse navbar-collapse" id="navbarColor02">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <Link to='/' class="nav-link">Home
+                  <span class="visually-hidden">(current)</span>
+                </Link>
+              </li>
+              <li class="nav-item">
+                <Link to='/cryptocurrencies' class="nav-link">Cryptocurrencies</Link>
+              </li>
+              <li class="nav-item">
+                <Link to='/exchanges' class="nav-link">Exchanges</Link>
+              </li>
+              <li class="nav-item">
+                <Link to='/news' class="nav-link">News</Link>
+              </li>
+           
+            </ul>
+           
+          </div>
+        </div>
+      </nav>
+    </>
+
   );
 };
 

@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import '../App.css';
 import millify from 'millify';
 import { Link } from 'react-router-dom';
 import { Card, Row, Col, Input, Typography, Avatar, Collapse } from 'antd';
 
 import { useGetCryptosQuery } from '../services/cryptoApi';
+import styled from 'styled-components';
 
 const { Text } = Typography;
 const { Panel } = Collapse;
+
+// add empty space: &nbsp;
 
 function Cryptocurrencies({ simplified }) {
   const count = simplified ? 10 : 100;
@@ -31,48 +35,33 @@ function Cryptocurrencies({ simplified }) {
   if (isFetching) return "Loading...";
   console.log("isFetching2: ", isFetching);
 
+  const Img = styled.img`
+  max-width: 33px`;
+
   return (
     <>
-      <div className='search-crypto'>
-        <Input placeholder='Search Cryptocurrency' onChange={(event) => setSearchTerm(event.target.value)} />
-      </div>
+      <form class="d-flex">
+        <input class="form-control me-sm-2" type="text" placeholder="Search Cryptocurrency" onChange={(event) => setSearchTerm(event.target.value)} />
+      </form>
 
-      <Row>
-        <Col span={4}></Col>
-        <Col span={4}>Name</Col>
-        <Col span={4}>Price</Col>
-        <Col span={4}>Market Cap</Col>
-        <Col span={4}>Daily Change</Col>
-      </Row>
-
-
-      <Row>
+      <ul className="coinlist list-group mt-2">
         {cryptos?.map((currency) => (
-          <Col span={24}>
-            <Collapse>
-              <Panel
-                key={currency.id}
-                showArrow={false}
-                header={(
-                  <Link key={currency.id} to={`/crypto/${currency.id}`}>
-                    <Row key={currency.id}>
-                      <Col span={4}>
-                        <Avatar img className="crypto-image" alt="crypto-Logo" src={currency.iconUrl} />
+          <Link to={`/crypto/${currency.id}`} className='text-decoration-none my-1 coin'>
+            <li className='coinlist-item list-group-item list-group-item-action d-flex justify-content-between align-items-center text-dark'>
+              <Img className="crypto-image" alt="crypto-Logo" src={currency.iconUrl} />
+              <span >{currency.name}</span>
+              <span className='text-decoration-none'>$&nbsp;{currency.price}</span>
+              <span className='text-decoration-none'>Mkt Cap&nbsp;{currency.marketCap}</span>
+              {currency.change < 0 ? (
+                <span className='text-decoration-none' className="coin-percent red">{currency.change}</span>
+              ) : (<span className='text-decoration-none' className="coin-percent green">{currency.change}%</span>)}
 
-                      </Col>
-                      <Col span={4}>{currency.name}</Col>
-                      <Col span={4}>{currency.price}</Col>
-                      <Col span={4}>{currency.marketCap}</Col>
-                      <Col span={4}>{currency.change}</Col>
-                    </Row>
-                  </Link>
-                )}
-              >
-              </Panel>
-            </Collapse>
-          </Col>
+            </li>
+          </Link>
+
         ))}
-      </Row>
+      </ul>
+
     </>
 
   )
