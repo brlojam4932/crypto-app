@@ -2,21 +2,23 @@ import React, { useState } from 'react';
 import HTMLReactParser from 'html-react-parser';
 import { useParams } from 'react-router-dom';
 import millify from 'millify';
-import { Col, Row, Typography, Select } from 'antd';
+import { Col, Row, Typography } from 'antd';
 import { MoneyCollectOutlined, DollarCircleOutlined, FundOutlined, ExclamationCircleOutlined, StopOutlined, TrophyOutlined, CheckOutlined, NumberOutlined, ThunderboltOutlined } from '@ant-design/icons';
 import LineChart from './LineChart';
+//import {parse, stringify, toJSON, fromJSON} from 'flatted';
 
 
 import { useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } from "../services/cryptoApi";
 
 const { Title, Text } = Typography;
-const { Option } = Select;
+//const { Option } = Select;
 
 function CryptoDetails() {
   const { coinId } = useParams();
   const [timeperiod, setTimeperiod] = useState('7d');
   const { data, isFetching } = useGetCryptoDetailsQuery(coinId);
   const { data: coinHistory } = useGetCryptoHistoryQuery({ coinId, timeperiod });
+
   console.log("coinId: ", coinId);
   console.log("cryptoDetails", data);
   console.log("coinHistory", coinHistory);
@@ -25,7 +27,7 @@ function CryptoDetails() {
 
   if (isFetching) return "Loading...";
 
-  const time = ['3h', '24h', '7d', '30d', '1y', '3m', '3y', '5y'];
+  const time = ['24h', '7d', '30d', '1y', '5y'];
 
   const stats = [
     { title: 'Price to USD', value: `$ ${cryptoDetails.price && millify(cryptoDetails.price)}`, icon: <DollarCircleOutlined /> },
@@ -48,39 +50,23 @@ function CryptoDetails() {
 
   return (
     <>
-      <div class="card border-secondary mb-3" style={{ maxwidth: "20rem" }}>
-        <div class="card-body">
-          <h4 class="card-title">{data?.data?.coin.name} ({data?.data?.coin.slug}) Price</h4>
-          <p class="card-text">{cryptoDetails.name} live price in US Dollar (USD). View value statistics, market cap and supply.</p>
+      <div className="card border-secondary mb-3" style={{ maxwidth: "20rem" }}>
+        <div className="card-body">
+          <h4 className="card-title">{data?.data?.coin.name} ({data?.data?.coin.slug}) Price</h4>
+          <p className="card-text">{cryptoDetails.name} live price in US Dollar (USD). View value statistics, market cap and supply.</p>
         </div>
       </div>
 
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarColor02">
-      <ul class="navbar-nav me-auto">
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Action</a>
-          </div>
-        </li>
-      </ul>
-      <form class="d-flex">
-        <input class="form-control me-sm-2" type="text" 
-        defaultValue="7d" placeholder="Select Timeperiod" onChange={(value) => setTimeperiod(value)}/>
-        {time.map((date) => <Option key={date}>{date}</Option>)}
-      </form>
-    </div>
-  </div>
-</nav>
-
+      <div className="form-group">
+        <label for="exampleSelect1" className="form-label mt-4">Select Timeperiod</label>
+        <select  
+        className="form-select" 
+        id="exampleSelect1" 
+        value={timeperiod}
+        onChange={(e) => setTimeperiod(e.target.value)}>
+        {time.map((date) => <option key={date}>{date}</option>)}
+        </select>
+      </div>
 
       <LineChart
         coinHistory={coinHistory}
@@ -88,10 +74,10 @@ function CryptoDetails() {
         coinName={cryptoDetails.name}
       />
 
-      <div class="card border-secondary mb-3" style={{ maxwidth: "20rem" }}>
-        <div class="card-body">
-          <h4 class="card-title">{data?.data?.coin.name} ({data?.data?.coin.slug}) Price</h4>
-          <p class="card-text"> An overview showing the stats of {cryptoDetails.name}</p>
+      <div className="card border-secondary mb-3" style={{ maxwidth: "20rem" }}>
+        <div className="card-body">
+          <h4 className="card-title">{data?.data?.coin.name} ({data?.data?.coin.slug}) Price</h4>
+          <p className="card-text"> An overview showing the stats of {cryptoDetails.name}</p>
         </div>
       </div>
 

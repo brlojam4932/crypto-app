@@ -1,14 +1,9 @@
 import React from 'react';
 import millify from 'millify';
-import { Typography, Row, Col, Statistic } from 'antd';
 import { Link } from 'react-router-dom';
 
 import { useGetCryptosQuery } from '../services/cryptoApi';
 import { Cryptocurrencies, News } from '.';
-
-
-
-const { Title } = Typography;
 
 const HomePage = () => {
   const { data, isFetching } = useGetCryptosQuery(10);
@@ -47,11 +42,9 @@ const HomePage = () => {
       <Cryptocurrencies simplified />
       <div className="list-group">
         <h4>Latest Crypto News</h4>
-        <Link to="/news" class="list-group-item list-group-item-action active">Show more news</Link>
+        <Link to="/news" >Show more news</Link>
       </div>
       <News simplified />
-
-
     </>
   );
 };

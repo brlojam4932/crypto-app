@@ -22,8 +22,8 @@ ul {
 }
 
 .coinlist-item {
-  background-color: black;
   display: flex;
+
 }
 
 .coinsummary {
@@ -71,6 +71,7 @@ ul {
 .news-text {
   margin-bottom: 32px;
   text-align: center;
+  text-decoration: none;
 
 }
 
