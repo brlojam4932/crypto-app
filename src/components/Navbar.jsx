@@ -30,7 +30,7 @@ function Navbar() {
   }, [screenSize]);
 
   return (
-    <>
+    <div className='container max-width 960px'>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
           <Link to="/" class="navbar-brand">Navbar</Link>
@@ -60,7 +60,7 @@ function Navbar() {
           </div>
         </div>
       </nav>
-    </>
+    </div>
 
   );
 };

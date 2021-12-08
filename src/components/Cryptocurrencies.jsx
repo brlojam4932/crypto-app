@@ -39,7 +39,7 @@ function Cryptocurrencies({ simplified }) {
   max-width: 33px`;
 
   return (
-    <>
+    <div className='container max-width 960px'>
       <form class="d-flex">
         <input class="form-control me-sm-2" type="text" placeholder="Search Cryptocurrency" onChange={(event) => setSearchTerm(event.target.value)} />
       </form>
@@ -55,16 +55,12 @@ function Cryptocurrencies({ simplified }) {
               {currency.change < 0 ? (
                 <span className='text-decoration-none' className="coin-percent red">{currency.change}</span>
               ) : (<span className='text-decoration-none' className="coin-percent green">{currency.change}%</span>)}
-
             </li>
           </Link>
-
         ))}
       </ul>
-
-    </>
-
+    </div>
   )
-}
+};
 
 export default Cryptocurrencies;

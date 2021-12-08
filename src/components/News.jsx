@@ -25,7 +25,7 @@ function News({ simplified }) {
   max-width: 33px`;
 
   return (
-    <>
+  
       <div className="container max-width 960px">
         <div className="row">
           {!simplified && (
@@ -68,7 +68,6 @@ function News({ simplified }) {
             ))}
         </div>
       </div>
-    </>
 
   );
 };

@@ -49,7 +49,7 @@ function CryptoDetails() {
   // slug: alt names for that crypto coin
 
   return (
-    <>
+    <div className='container max-width 960px'>
       <div className="card border-secondary mb-3" style={{ maxwidth: "20rem" }}>
         <div className="card-body">
           <h4 className="card-title">{data?.data?.coin.name} ({data?.data?.coin.slug}) Price</h4>
@@ -129,10 +129,8 @@ function CryptoDetails() {
           </a>
         </Row>
       ))}
-
-    </>
-
-  )
-}
+    </div>
+  );
+};
 
 export default CryptoDetails;

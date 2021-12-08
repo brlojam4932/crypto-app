@@ -13,7 +13,7 @@ const HomePage = () => {
 
 
   return (
-    <>
+    <div className='container max-width 960px'>
       <table className="table table-hover">
         <thead>
           <tr>
@@ -45,7 +45,7 @@ const HomePage = () => {
         <Link to="/news" >Show more news</Link>
       </div>
       <News simplified />
-    </>
+    </div>
   );
 };
 
