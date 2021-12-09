@@ -87,5 +87,23 @@ ul {
     #4801ff 100%
   );
   color: #e2e2e2;
+}
 
+/* Exchange */
+
+.exchange-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  height: 80px;
+  border-bottom: 1px solid #d7d7d7;
+  width: 900px;
+}
+
+.exchange-data {
+  display: flex;
+  text-align: right;
+  justify-content: space-between;
+  width: 100%;
 }

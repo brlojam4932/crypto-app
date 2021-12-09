@@ -41,62 +41,45 @@ function Exchanges() {
 
   // stats, currencies, exchanges
 
+
+
+
+
   return (
 
-
-    <div className='container-md'>
-      {/*
-       <table className="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Total Crypto</th>
-            <th scope="col">Total Exchanges</th>
-            <th scope="col">Total Market Cap:</th>
-            <th scope="col">Total 24h Volume</th>
-            <th scope="col">Total Markets</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr className="secondary">
-            <th scope="row">Info</th>
-            <td>{globalStats.total}</td>
-            <td>{millify(globalStats.totalExchanges)}</td>
-            <td>{`$${millify(globalStats.total24hVolume)}`}</td>
-            <td>{millify(globalStats.totalMarkets)}</td>
-          </tr>
-        </tbody>
-      </table>
-       */}
-
-      <table className="table table-hover">
-        <thead>
-          <tr>
-            <th>Exchanges</th>
-            <th>24h trade Volume</th>
-            <th>Markets</th>
-            <th>Change</th>
-          </tr>
-        </thead>
-        {exchangesList.map((exchange) => (
-          <tbody key={exchange.id}>
-            <tr className="secondary"  key={exchange.id}   showarrow="false">
-              <td>
+    <div className="container-lg">
+      <div className="row row-cols-4">
+        <div className="col"></div>
+        <div className='col'>22h Vol</div>
+        <div className='col'>Markets</div>
+        <div className='col'>Change</div>
+      </div>
+      <br />
+      <br />
+      {exchangesList.map((exchange) => (
+        <div className='col'>
+          <span>
+            <div className="row row-cols-4">
+              <div className='col'>
                 <h6><strong>{exchange.rank}</strong></h6>
                 <Img className='exchange-image' src={exchange.iconUrl} />
                 <p><strong>{exchange.name}</strong></p>
-              </td>
-              <td>$&nbsp;{millify(exchange.volume)}</td>
-              <td>$&nbsp;{millify(exchange.numberOfMarkets)}</td>
-              <td>$&nbsp;{millify(exchange.marketShare)}</td>
-            </tr>
-            <tr>
-              <th scope="row">1</th>
-              <td><small>{HTMLReactParser(exchange.description || '')}</small></td>
-            </tr>
-         
-          </tbody>
-        ))}
-      </table>
+              </div>
+              <div className='col'>
+                <p>$&nbsp;{millify(exchange.volume)}</p>
+              </div>
+              <div className='col'>
+                <p>$&nbsp;{millify(exchange.numberOfMarkets)}</p>
+              </div>
+              <div className='col'>
+                <p>$&nbsp;{millify(exchange.marketShare)}</p>
+              </div>
+            </div>
+            {HTMLReactParser(exchange.description || '')}
+          </span>
+        </div>
+      ))}
+
     </div>
   );
 };
