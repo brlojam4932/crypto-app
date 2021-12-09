@@ -31,28 +31,28 @@ function Navbar() {
 
   return (
     <div className='container max-width 960px'>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-          <Link to="/" class="navbar-brand">Navbar</Link>
-          <button class="navbar-toggler" type="button" onClick={() => setActiveMenu(!activeMenu)} data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div className="container-fluid">
+          <Link to="/" className="navbar-brand">Navbar</Link>
+          <button className="navbar-toggler" type="button" onClick={() => setActiveMenu(!activeMenu)} data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
           </button>
 
-          <div class="collapse navbar-collapse" id="navbarColor02">
-            <ul class="navbar-nav me-auto">
-              <li class="nav-item">
-                <Link to='/' class="nav-link">Home
-                  <span class="visually-hidden">(current)</span>
+          <div className="collapse navbar-collapse" id="navbarColor02">
+            <ul className="navbar-nav me-auto">
+              <li className="nav-item">
+                <Link to='/' className="nav-link">Home
+                  <span className="visually-hidden">(current)</span>
                 </Link>
               </li>
-              <li class="nav-item">
-                <Link to='/cryptocurrencies' class="nav-link">Cryptocurrencies</Link>
+              <li className="nav-item">
+                <Link to='/cryptocurrencies' className="nav-link">Cryptocurrencies</Link>
               </li>
-              <li class="nav-item">
-                <Link to='/exchanges' class="nav-link">Exchanges</Link>
+              <li className="nav-item">
+                <Link to='/exchanges' className="nav-link">Exchanges</Link>
               </li>
-              <li class="nav-item">
-                <Link to='/news' class="nav-link">News</Link>
+              <li className="nav-item">
+                <Link to='/news' className="nav-link">News</Link>
               </li>
            
             </ul>

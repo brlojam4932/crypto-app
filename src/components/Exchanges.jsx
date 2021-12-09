@@ -11,51 +11,6 @@ import { FiPlus, FiMinus } from 'react-icons/fi';
 
 //const { Text } = Typography;
 //const { Panel } = Collapse;
-const AccordionSection = styled.div`
-
-  `;
-
-const Container = styled.div`
-
- `;
-
-const Wrap = styled.div`
-  background: #272727;
-  color: #fff;
-  display: flex;
-  justify-content: spance-between;
-  align-items: center;
-  width: 100;
-  text-align: center;
-  cursor: pointer;
-
-  h1 {
-    padding: 2rem;
-    font-size: 2rem;
-  }
-
-  span {
-    margin-right: 1.5rem;
-  }
-  `;
-
-const Dropdown = styled.div`
-  background: #1c1c1c;
-  color: #00ffb9;
-  width: 100%;
-  height: 100px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  aligh-items: center;
-  border-botton: 1px solid #00ffb9;
-  border-top: 1px solid #00ffb9;
-
-  p {
-    font-size: 2rem;
-  }
-  
-`;
 
 const Img = styled.img`
 max-width: 33px
@@ -89,7 +44,7 @@ function Exchanges() {
   return (
 
 
-    <div className='container max-width 960px'>
+    <div className='container-md'>
       {/*
        <table className="table table-hover">
         <thead>
@@ -124,7 +79,7 @@ function Exchanges() {
         </thead>
         {exchangesList.map((exchange) => (
           <tbody key={exchange.id}>
-            <tr className="secondary">
+            <tr className="secondary"  key={exchange.id}   showarrow="false">
               <td>
                 <h6><strong>{exchange.rank}</strong></h6>
                 <Img className='exchange-image' src={exchange.iconUrl} />
@@ -134,11 +89,16 @@ function Exchanges() {
               <td>$&nbsp;{millify(exchange.numberOfMarkets)}</td>
               <td>$&nbsp;{millify(exchange.marketShare)}</td>
             </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td><small>{HTMLReactParser(exchange.description || '')}</small></td>
+            </tr>
+         
           </tbody>
         ))}
       </table>
     </div>
-  )
-}
+  );
+};
 
 export default Exchanges;
