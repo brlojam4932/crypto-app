@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import millify from "millify";
-import { Collapse, Row, Col, Typography, Avatar } from 'antd';
+//import { Collapse, Row, Col, Typography, Avatar, Dropdown } from 'antd';
 import { useGetCryptoExchangesQuery } from '../services/cryptoApi';
 import HTMLReactParser from 'html-react-parser';
 import styled from 'styled-components';
@@ -12,6 +12,7 @@ import { FiPlus, FiMinus } from 'react-icons/fi';
 //const { Text } = Typography;
 //const { Panel } = Collapse;
 
+//const DropDown = styled.div``;
 const Img = styled.img`
 max-width: 33px
 `;
@@ -26,6 +27,7 @@ const Tbody = styled.tbody``;
 function Exchanges() {
   const { data, isFetching } = useGetCryptoExchangesQuery();
   const [clicked, setClicked] = useState(false);
+  const [show, setShow] = useState(false);
 
   const exchangesList = data?.data?.exchanges;
 
@@ -42,17 +44,13 @@ function Exchanges() {
   // stats, currencies, exchanges
 
 
-
-
-
   return (
-
     <div className="container-lg">
       <div className="row row-cols-4">
         <div className="col"></div>
-        <div className='col'>22h Vol</div>
-        <div className='col'>Markets</div>
-        <div className='col'>Change</div>
+        <div className='col' className="text-primary">22h Vol</div>
+        <div className='col'className="text-primary">Markets</div>
+        <div className='col' className="text-primary">Change</div>
       </div>
       <br />
       <br />
@@ -75,7 +73,9 @@ function Exchanges() {
                 <p>$&nbsp;{millify(exchange.marketShare)}</p>
               </div>
             </div>
-            {HTMLReactParser(exchange.description || '')}
+            {show ? HTMLReactParser(exchange.description || '') : null}
+            <button className="btn btn-outline-light" onClick={() => setShow(true)}>Show</button>
+            <button className="btn btn-outline-light" onClick={() => setShow(false)}>Hide</button>
           </span>
         </div>
       ))}
