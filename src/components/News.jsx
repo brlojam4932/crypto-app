@@ -30,9 +30,9 @@ function News({ simplified }) {
         <div className="row">
           {!simplified && (
             <div className="form-group">
-            <label for="exampleSelect1" className="form-label mt-4">Select a Crypto</label>
+            <label for="exampleSelect1" className="form-label mt-4"><h2>Select a Crypto</h2></label>
             <select  
-            className="form-select" 
+            className="form-select" style={{width: "50%"}}
             id="exampleSelect1" 
             optionFilterProp="children"
             value={newsCategory}

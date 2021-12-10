@@ -5,10 +5,11 @@ import millify from 'millify';
 import { Col, Row, Typography } from 'antd';
 import { MoneyCollectOutlined, DollarCircleOutlined, FundOutlined, ExclamationCircleOutlined, StopOutlined, TrophyOutlined, CheckOutlined, NumberOutlined, ThunderboltOutlined } from '@ant-design/icons';
 import LineChart from './LineChart';
+import AccountBalance from './AccountBalance';
 //import {parse, stringify, toJSON, fromJSON} from 'flatted';
 
-
 import { useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } from "../services/cryptoApi";
+
 
 const { Title, Text } = Typography;
 //const { Option } = Select;
@@ -18,6 +19,10 @@ function CryptoDetails() {
   const [timeperiod, setTimeperiod] = useState('7d');
   const { data, isFetching } = useGetCryptoDetailsQuery(coinId);
   const { data: coinHistory } = useGetCryptoHistoryQuery({ coinId, timeperiod });
+
+  const [balance, setBalance] = useState(10000);
+  const [showBalance, setShowBalance] = useState(false);
+  const [buyInputValue, setBuyInputValue] = useState('');
 
   console.log("coinId: ", coinId);
   console.log("cryptoDetails", data);
@@ -46,6 +51,41 @@ function CryptoDetails() {
     { title: 'Circulating Supply', value: `$ ${millify(cryptoDetails.circulatingSupply)}`, icon: <ExclamationCircleOutlined /> },
   ];
 
+  /*
+    const handleTransaction = (isBuy, valueChangeId) => {
+      let balanceChange = isBuy ? 1 : -1;
+      if (balance > newValues.price) {
+        newValues.balance += balanceChange;
+        setBalance( prevBalance => prevBalance - balanceChange * newValues.price);
+      } else if (!isBuy) {
+        newValues.balance += balanceChange;
+        setBalance( prevBalance => prevBalance + balanceChange * newValues.price)
+      }
+      return newValues;
+    }
+    */
+
+  /*
+   const handleTransactionClick = (event) => {
+    event.preventDefault();
+    handleTransaction(coinId, buyInputValue)
+  }
+
+  const setBalanceDisplay = () => {
+    setShowBalance(prevBalance => !prevBalance)
+  }
+  */
+
+  const handlePrint = () => {
+    setBalance(prevBalance => prevBalance + 1200);
+  }
+
+  const handleShow = () => {
+    setShowBalance(prevValue => !prevValue);
+  }
+
+
+
   // slug: alt names for that crypto coin
 
   return (
@@ -57,14 +97,41 @@ function CryptoDetails() {
         </div>
       </div>
 
+      {/* ----------BALANCE---------- */}
+
+      <AccountBalance
+        amount={balance}
+        showBalance={showBalance}
+        handleShow={handleShow}
+        handlePrint={handlePrint}
+      />
+
+      {/* ----------TRADE---------- */}
+
+      <div className="form-group has-success" >
+        <label className="form-label mt-4" for="inputValid">
+          <h2>Trade {cryptoDetails.name}</h2></label>
+        <input type="text" 
+          style={{width: "50%"}}
+          placeholder='Enter an amount'
+          class="form-control is-valid" id="inputValid"
+          onChange={(e) => setBuyInputValue(+e.target.value)}
+        />
+        <div class="valid-feedback">Success! You've done it.</div>
+      </div>
+      <button className="btn btn-success">Buy</button>
+      <button className="btn btn-warning">Sell</button>
+
+      {/* ----------SELECT TIME PERIOD---------- */}
+
       <div className="form-group">
         <label for="exampleSelect1" className="form-label mt-4">Select Timeperiod</label>
-        <select  
-        className="form-select" 
-        id="exampleSelect1" 
-        value={timeperiod}
-        onChange={(e) => setTimeperiod(e.target.value)}>
-        {time.map((date) => <option key={date}>{date}</option>)}
+        <select
+          className="form-select" style={{width: "50%"}}
+          id="exampleSelect1"
+          value={timeperiod}
+          onChange={(e) => setTimeperiod(e.target.value)}>
+          {time.map((date) => <option key={date}>{date}</option>)}
         </select>
       </div>
 
@@ -111,10 +178,10 @@ function CryptoDetails() {
         ))}
       </Col>
 
-      <div class="card border-secondary mb-3" style={{ maxwidth: "20rem" }}>
-        <div class="card-body">
-          <h4 class="card-title"> What is {cryptoDetails.name}</h4>
-          <p class="card-text">{HTMLReactParser(cryptoDetails.description)}</p>
+      <div className="card border-secondary mb-3" style={{ maxwidth: "20rem" }}>
+        <div className="card-body">
+          <h4 className="card-title"> What is {cryptoDetails.name}</h4>
+          <p className="card-text">{HTMLReactParser(cryptoDetails.description)}</p>
         </div>
       </div>
 

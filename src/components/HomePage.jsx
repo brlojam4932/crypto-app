@@ -37,12 +37,20 @@ const HomePage = () => {
 
       <div className="list-group">
         <h4>Top 10 Cryptos In The World</h4>
-        <Link to="/cryptocurrencies" className="list-group-item list-group-item-action active">Show more</Link>
+        <Link to="/cryptocurrencies"
+          type="button" 
+          class="btn btn-outline-primary"
+          style={{width: "50%"}}
+          >
+          Show more
+        </Link>
       </div>
+      <br />
+      <br />
       <Cryptocurrencies simplified />
       <div className="list-group">
         <h4>Latest Crypto News</h4>
-        <Link to="/news" >Show more news</Link>
+        <Link to="/news">Show more news</Link>
       </div>
       <News simplified />
     </div>

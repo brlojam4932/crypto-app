@@ -41,7 +41,7 @@ function Cryptocurrencies({ simplified }) {
   return (
     <div className='container max-width 960px'>
       <form class="d-flex">
-        <input class="form-control me-sm-2" type="text" placeholder="Search Cryptocurrency" onChange={(event) => setSearchTerm(event.target.value)} />
+        <input class="form-control me-sm-2" type="text" placeholder="Search Cryptocurrency" onChange={(event) => setSearchTerm(event.target.value)} style={{width: "50%"}} />
       </form>
 
       <ul className="coinlist list-group mt-2">
