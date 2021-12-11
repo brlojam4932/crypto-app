@@ -12,7 +12,7 @@ import styled from 'styled-components';
 
 // add empty space: &nbsp;
 
-function Cryptocurrencies({ simplified }) {
+function Cryptocurrencies({ simplified, balance, showBalance }) {
   const count = simplified ? 10 : 100;
   const { data: cryptosList, isFetching } = useGetCryptosQuery(count);
   const [cryptos, setCryptos] = useState();
@@ -47,14 +47,15 @@ function Cryptocurrencies({ simplified }) {
       <ul className="coinlist list-group mt-2">
         {cryptos?.map((currency) => (
           <Link to={`/crypto/${currency.id}`} className='text-decoration-none my-1 coin'>
-            <li className='coinlist-item list-group-item list-group-item-action d-flex justify-content-between align-items-center text-dark'>
+            <li className='list-group-item list-group-item-action d-flex justify-content-between align-items-center text-dark'>
               <Img className="crypto-image" alt="crypto-Logo" src={currency.iconUrl} />
               <span >{currency.name}</span>
               <span className='text-decoration-none'>$&nbsp;{millify(currency.price, {precision: 3, decimalSeperator: ","})}</span>
               <span className='text-decoration-none'>Mkt Cap&nbsp;{millify(currency.marketCap)}</span>
+              <span className='text-decoration-none'>Actions{showBalance ? balance : "****"}</span>
               {currency.change < 0 ? (
-                <span className='text-decoration-none' className="coin-percent red">{currency.change}</span>
-              ) : (<span className='text-decoration-none' className="coin-percent green">{currency.change}%</span>)}
+                <span className='text-decoration-none coin-percent red'>{currency.change}</span>
+              ) : (<span className='text-decoration-none coin-percent green'>{currency.change}%</span>)}
             </li>
           </Link>
         ))}

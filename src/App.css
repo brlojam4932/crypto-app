@@ -14,26 +14,6 @@ ul {
   list-style: none;
 }
 
-.coin {
-  display: flex;
-  align-items: center;
-  padding-right: 24px;
-  min-width: 300px;
-}
-
-.coinlist-item {
-  display: flex;
-}
-
-.coinsummary {
-  border-color: rgb(67, 65, 65) !important;
-  border-style: outset !important;
-}
-
-.coin-data-category {
-  font-size: 10px;
-
-}
 
 .red {
   color: #f00606;

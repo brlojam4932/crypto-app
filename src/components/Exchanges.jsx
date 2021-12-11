@@ -48,9 +48,9 @@ function Exchanges() {
     <div className="container-lg">
       <div className="row row-cols-4">
         <div className="col"></div>
-        <div className='col' className="text-primary">22h Vol</div>
-        <div className='col'className="text-primary">Markets</div>
-        <div className='col' className="text-primary">Change</div>
+        <div className='col text-primary'>22h Vol</div>
+        <div className='col text-primary'>Markets</div>
+        <div className='col text-primary'>Change</div>
       </div>
       <br />
       <br />

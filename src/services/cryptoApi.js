@@ -10,16 +10,21 @@ const cryptoApiHeaders = {
 //https://coinranking1.p.rapidapi.com/coin/1/history/7d
 const baseUrl = 'https://coinranking1.p.rapidapi.com';
 
-const createRequest = (url) => ({ url, headers: cryptoApiHeaders});
+const balance = 0;
+
+const createRequest = (url) => ({ url, headers: cryptoApiHeaders, balance});
+
 
 export const cryptoApi = createApi({
   reducerPath: 'cryptoApi',
   baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: ( builder ) => ({
     getCryptos: builder.query({
+      //stats
       query: (count) => createRequest(`/coins?limit=${count}`),
     }),
     getCryptoDetails: builder.query({
+      //price
       query: (coinId) => createRequest(`/coin/${coinId}`),
     }),
     getCryptoHistory: builder.query({

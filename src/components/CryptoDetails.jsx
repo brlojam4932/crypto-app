@@ -20,7 +20,7 @@ function CryptoDetails() {
   const { data, isFetching } = useGetCryptoDetailsQuery(coinId);
   const { data: coinHistory } = useGetCryptoHistoryQuery({ coinId, timeperiod });
 
-  const [balance, setBalance] = useState(10000);
+  const [accountBalance, setAccountBalance] = useState(10000);
   const [showBalance, setShowBalance] = useState(false);
   const [buyInputValue, setBuyInputValue] = useState('');
 
@@ -40,6 +40,7 @@ function CryptoDetails() {
     { title: '24h Volume', value: `$ ${cryptoDetails.volume && millify(cryptoDetails.volume)}`, icon: <ThunderboltOutlined /> },
     { title: 'Market Cap', value: `$ ${cryptoDetails.marketCap && millify(cryptoDetails.marketCap)}`, icon: <DollarCircleOutlined /> },
     { title: 'All-time-high(daily avg.)', value: `$ ${millify(cryptoDetails.allTimeHigh.price)}`, icon: <TrophyOutlined /> },
+    { title: "Token Balance", value: `${cryptoDetails.balance}`}
   ];
 
 
@@ -50,6 +51,8 @@ function CryptoDetails() {
     { title: 'Total Supply', value: `$ ${millify(cryptoDetails.totalSupply)}`, icon: <ExclamationCircleOutlined /> },
     { title: 'Circulating Supply', value: `$ ${millify(cryptoDetails.circulatingSupply)}`, icon: <ExclamationCircleOutlined /> },
   ];
+
+
 
   /*
     const handleTransaction = (isBuy, valueChangeId) => {
@@ -77,7 +80,7 @@ function CryptoDetails() {
   */
 
   const handlePrint = () => {
-    setBalance(prevBalance => prevBalance + 1200);
+    setAccountBalance(prevBalance => prevBalance + 1200);
   }
 
   const handleShow = () => {
@@ -100,7 +103,7 @@ function CryptoDetails() {
       {/* ----------BALANCE---------- */}
 
       <AccountBalance
-        amount={balance}
+        amount={accountBalance}
         showBalance={showBalance}
         handleShow={handleShow}
         handlePrint={handlePrint}
@@ -121,6 +124,8 @@ function CryptoDetails() {
       </div>
       <button className="btn btn-success">Buy</button>
       <button className="btn btn-warning">Sell</button>
+
+      <h2>{cryptoDetails.name} Coin Balance {cryptoDetails.balance}</h2>
 
       {/* ----------SELECT TIME PERIOD---------- */}
 

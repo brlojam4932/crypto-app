@@ -1,15 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components'
+//import styled from 'styled-components'
 
 var formatter = Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD"
 });
-
-const Button = styled.button`
-  margin: 30px 9px;
-  `;
 
 
 function AccountBalance(props) {
@@ -26,7 +22,7 @@ function AccountBalance(props) {
         <button type="button" class="btn btn-outline-primary"
           onClick={props.handleShow}
         >
-          {props.showBalance ? "Hide Balance" : "Show Balance"}
+          {props.showBalance ? "Hide Balance" : "Show Acc Balance"}
         </button>
 
         <button type="button" class="btn btn-outline-secondary"

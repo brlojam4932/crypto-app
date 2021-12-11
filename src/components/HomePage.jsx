@@ -14,26 +14,30 @@ const HomePage = () => {
 
   return (
     <div className='container max-width 960px'>
+      {/* ----------Global Stats---------- */}
       <table className="table table-hover">
         <thead>
           <tr>
-            <th scope="col">Total Crypto</th>
+            <th scope="col">Total Crypto Coins</th>
+            <th scope="col">Total Markets</th>
             <th scope="col">Total Exchanges</th>
             <th scope="col">Total Market Cap:</th>
             <th scope="col">Total 24h Volume</th>
-            <th scope="col">Total Markets</th>
           </tr>
         </thead>
         <tbody>
           <tr className="secondary">
-            <th scope="row">Info</th>
             <td>{globalStats.total}</td>
-            <td>{millify(globalStats.totalExchanges)}</td>
-            <td>{`$${millify(globalStats.total24hVolume)}`}</td>
             <td>{millify(globalStats.totalMarkets)}</td>
+            <td>{millify(globalStats.totalExchanges)}</td>
+            <td>{`$${millify(globalStats.totalMarketCap)}`}</td>
+            <td>{`$${millify(globalStats.total24hVolume)}`}</td>
+            
           </tr>
         </tbody>
       </table>
+
+      {/* ----------Cryptos Listed---------- */}
 
       <div className="list-group">
         <h4>Top 10 Cryptos In The World</h4>
@@ -52,6 +56,7 @@ const HomePage = () => {
         <h4>Latest Crypto News</h4>
         <Link to="/news">Show more news</Link>
       </div>
+      {/* ----------NEWS---------- */}
       <News simplified />
     </div>
   );
