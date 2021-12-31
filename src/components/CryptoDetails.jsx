@@ -54,31 +54,6 @@ function CryptoDetails() {
 
 
 
-  /*
-    const handleTransaction = (isBuy, valueChangeId) => {
-      let balanceChange = isBuy ? 1 : -1;
-      if (balance > newValues.price) {
-        newValues.balance += balanceChange;
-        setBalance( prevBalance => prevBalance - balanceChange * newValues.price);
-      } else if (!isBuy) {
-        newValues.balance += balanceChange;
-        setBalance( prevBalance => prevBalance + balanceChange * newValues.price)
-      }
-      return newValues;
-    }
-    */
-
-  /*
-   const handleTransactionClick = (event) => {
-    event.preventDefault();
-    handleTransaction(coinId, buyInputValue)
-  }
-
-  const setBalanceDisplay = () => {
-    setShowBalance(prevBalance => !prevBalance)
-  }
-  */
-
   const handlePrint = () => {
     setAccountBalance(prevBalance => prevBalance + 1200);
   }
